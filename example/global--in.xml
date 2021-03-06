@@ -1,0 +1,11 @@
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="WSO2AM--Ext--In">
+    <!-- a custom log to print the header content -->
+    <log level="custom">
+        <property name="Extracted Auth Header" expression="get-property('PRESERVE_AUTH_HEADER_HANDLER_TOKEN')" />
+    </log>
+
+    <!-- setting back the Auth header if property exists-->
+    <filter xpath="get-property('PRESERVE_AUTH_HEADER_HANDLER_TOKEN')">
+        <property name="Authorization" scope="transport" expression="get-property('PRESERVE_AUTH_HEADER_HANDLER_TOKEN')" /> 
+    </filter>
+</sequence>
